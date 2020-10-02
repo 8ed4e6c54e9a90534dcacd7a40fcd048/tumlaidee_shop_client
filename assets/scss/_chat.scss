@@ -1,0 +1,38 @@
+.ant-card-head :hover {
+  background-color: #dbdbdb38;
+}
+.bg-head-chat {
+  background-color: #79a301 !important;
+}
+.input-chat {
+  width: 80%;
+  border-radius: 30px;
+  height: 3em;
+  line-height: 2em;
+  outline: none;
+  border: 1px solid #eee;
+  padding: 0.8em;
+  margin-right: 0.5em;
+  box-shadow: 1px 1px 2px rgba(154, 154, 154, 0.6);
+}
+.container-chat{
+  height: calc(100vh - 220px);
+  padding: 16px;
+  overflow-y: scroll;
+}
+.send-message{
+  font-size: 32px;
+  color: #79a301 !important;
+  align-self: center;
+  padding: 6px;
+}
+.text-message{
+  background-color: #E1EFD7;
+  padding: 6px 16px;
+  border-radius: 9px;
+  color: #5e5e5e;
+}
+.see-more-chat{
+  text-align: center;
+  opacity: 0.6;
+}

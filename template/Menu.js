@@ -1,11 +1,13 @@
 import React from 'react'
 
+import Link from 'next/link'
+
 export default function Menu() {
     return (
         <nav className="col-md-2 d-none d-md-block bg-white sidebar">
             <div className="sidebar-sticky">
                 <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>การขายของฉัน test</span>
+                    <span>การขายของฉัน</span>
                     <a className="d-flex align-items-center text-muted" href="#">
                         <span data-feather="plus-circle" />
                     </a>
@@ -98,22 +100,36 @@ export default function Menu() {
                 </ul>
                 <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                     <span>ลูกค้าของฉัน</span>
-                    <a className="d-flex align-items-center text-muted" href="#">
+
+                    <a className="d-flex align-items-center text-muted" >
+
                         <span data-feather="plus-circle" />
                     </a>
+
                 </h5>
                 <ul className="nav flex-column mb-2">
                     <li className="nav-item">
-                        <a className="nav-link" href="#">
-                            <span data-feather="file-text" />
+                        <Link href="/customer">
+                            <a className="nav-link" >
+                                <span data-feather="file-text" />
                         รายการลูกค้า
                         </a>
+                        </Link>
                     </li>
+
                     <li className="nav-item">
                         <a className="nav-link" href="#">
                             <span data-feather="file-text" />
                         เพิ่มลูกค้า
                         </a>
+                    </li>
+                    <li className="nav-item">
+                        <Link href="/chat">
+                            <a className="nav-link" >
+                                <span data-feather="file-text" />
+                        แชทลูกค้า
+                        </a>
+                        </Link>
                     </li>
                 </ul>
                 <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -156,7 +172,7 @@ export default function Menu() {
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div >
         </nav >
 
     )

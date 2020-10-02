@@ -4,7 +4,7 @@
   "description": "ERP client of Tum Lai Dee",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev -p 4000",
     "build": "next build",
     "start": "next start"
   },
@@ -21,10 +21,13 @@
   "homepage": "https://github.com/8ed4e6c54e9a90534dcacd7a40fcd048/erp_client#readme",
   "dependencies": {
     "antd": "^4.6.3",
+    "dayjs": "^1.8.36",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.5.3",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "socket.io": "^2.3.0",
     "styled-components": "^5.2.0"
   }
 }

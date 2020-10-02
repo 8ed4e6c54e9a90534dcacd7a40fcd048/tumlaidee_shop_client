@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "userid": "0001",
+            "username": "admin",
+            "password": "123456"
+        },
+        {
+            "userid": "0002",
+            "username": "aaaa",
+            "password": "123456"
+        },
+        {
+            "userid": "0003",
+            "username": "bbbb",
+            "password": "123456"
+        },
+        {
+            "userid": "0004",
+            "username": "cccc",
+            "password": "123456"
+        },
+        {
+            "userid": "0005",
+            "username": "dddd",
+            "password": "123456"
+        }]
+}
