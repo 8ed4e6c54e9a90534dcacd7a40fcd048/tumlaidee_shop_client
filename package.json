@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/8ed4e6c54e9a90534dcacd7a40fcd048/erp_client#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.31",
+    "@fortawesome/free-solid-svg-icons": "^5.15.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "antd": "^4.6.3",
     "dayjs": "^1.8.36",
     "isomorphic-unfetch": "^3.0.0",

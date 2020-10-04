@@ -52,7 +52,7 @@ export default function Menu() {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="product/add/insert">
                             <span data-feather="file-text" />
                         เพิ่มสินค้า
                         </a>
