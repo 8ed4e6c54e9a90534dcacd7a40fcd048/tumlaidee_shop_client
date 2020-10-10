@@ -9,30 +9,27 @@ const Chat = (props) => {
     const socket = useContext(SocketContext);
     const router = useRouter()
     const { user } = router.query
-    console.log("user", user);
     const bottomRef = useRef();
     const [state, setState] = useState({
         user: "max",
         target: user,
         messages_id: '',
-        messages: [],
-        limit: 10
+        messages: []
     });
+    const [limit, setLimit] = useState(10);
     const [debounceMessage, setDebounceMessage] = useState('');
-
     const receiveMessage = () => {
-        socket.emit('receive message', state.user, state.target, state.limit);
-        socket.on('receive new message' + state.target, (messages) => {
-            console.log("receive new message",messages);
-            // setState({
-            //     ...state,
-            //     messages_id: messages._id,
-            //     messages: messages.res_messages,
-            // })
-            // setDebounceMessage('');
-            // scrollToBottom();
+        socket.on('receive new message' + state.user + state.target, (messages) => {
+            console.log("receive new message", messages);
+            setState({
+                ...state,
+                messages_id: messages._id,
+                messages: messages.res_messages,
+            })
+            setDebounceMessage('');
+            scrollToBottom();
         });
-        socket.on('receive message' + state.target, (messages) => {
+        socket.on('receive message' + state.messages_id, (messages) => {
             setState({
                 ...state,
                 messages_id: messages._id,
@@ -42,16 +39,12 @@ const Chat = (props) => {
             scrollToBottom();
         });
 
-
-
         if (!state.user) {
             Router.push({
                 pathname: '/'
             })
         }
     };
-
-
 
     useEffect(() => {
         receiveMessage();
@@ -69,14 +62,14 @@ const Chat = (props) => {
     };
 
     const readMessages = () => {
-        socket.emit('read message', state.user, state.target);
+        socket.emit('read message', state.user, state.target, limit);
     };
 
     const sendMessages = () => {
         const msg = {
             user: state.user, target: state.target, msg: debounceMessage, isPicture: false
         }
-        socket.emit('send message', state.messages_id, msg, state.limit)
+        socket.emit('send message', state.messages_id, msg, limit)
         receiveMessage();
     };
 
@@ -84,7 +77,7 @@ const Chat = (props) => {
     return (
         <div>
             <Head>
-                <title>Chat LIst</title>
+                <title>Chat LIst </title>
                 <link rel='icon' href='/favicon.ico' />
                 <meta name="description" content="React Socket.io Chatting application" />
                 <meta name="keywords" content="react,socket.io,chatting,javascript" />
@@ -95,21 +88,24 @@ const Chat = (props) => {
                         <CaretLeftOutlined style={{ fontSize: 22, color: '#fff' }} />
                     </Link>
                 </div>
-                <label level={3} style={{ fontSize: 22, color: '#fff' }}  > {state.user}</label>
+                <label level={3} style={{ fontSize: 22, color: '#fff' }}  > {state.target}</label>
                 <div className="navbar-brand col-sm-3 col-md-2 mr-0">
                 </div>
             </div>
             <div className="container-chat">
-                <div className="see-more-chat" onClick={() => {setState({
-                    ...state,
-                    limit: (state.limit + 10)
-                });receiveMessage();}}>see more</div>
-                <div className="see-more-chat" onClick={() => console.log("see more")}>see more</div>
+                <button className="see-more-chat" onClick={() => {
+                    let new_limit = limit + 10
+                    setLimit(new_limit); readMessages();
+                }}>see more</button>
                 <main>{state.messages && <ChatView data={state.messages} />}</main>
                 <div ref={bottomRef} className="list-bottom"></div>
             </div>
             <div className="d-flex  justify-content-center" >
-                <input className="input-chat" type="text" value={debounceMessage} onChange={(e) => setDebounceMessage(e.target.value)} />
+                <input className="input-chat" type="text" value={debounceMessage} onChange={(e) => setDebounceMessage(e.target.value)} onKeyPress={e => {
+                    if (e.key === 'Enter') {
+                        sendMessages()
+                    }
+                }} />
                 <SendOutlined className="send-message" onClick={() => sendMessages()} />
             </div>
         </div >
