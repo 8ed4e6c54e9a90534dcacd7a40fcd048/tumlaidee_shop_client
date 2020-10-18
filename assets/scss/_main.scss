@@ -309,3 +309,34 @@ body {
 .shopee-upload__input {
   display: none;
 }
+.root-modal-option{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+.root-modal-option .modal-option{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+.modal-option .modal-option-title{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+}
+.modal-option .modal-option-detail{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+}
+.modal-option-detail .modal-option-list{
+  padding: 4px;
+  border: 1px solid #000;
+  margin: 4px;
+}
+.modal-option-detail .modal-option-list-plus{
+  padding: 4px;
+  border: 1px solid #000;
+  margin: 4px;
+  cursor: pointer;
+}

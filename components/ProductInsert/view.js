@@ -1,10 +1,29 @@
+import { useState } from 'react';
 import Link from "next/link";
 import { faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Input } from 'antd';
 import ModalType from './ModalType';
+import ModalOption from './ModalOption';
 const Product = (props) => {
   const name = '';
+  const [state, setState] = useState({});
+  const _modalTypeChange = async (data) => {
+    console.log(data);
+    var typeText = '';
+    if (data.stateType1) {
+      typeText = data.stateType1.label;
+    }
+    if (data.stateType2) {
+      typeText += " > " + data.stateType2.label;
+    }
+    await setState({
+      ...state,
+      typeText: typeText,
+      stateType1: data.stateType1,
+      stateType2: data.stateType2,
+    })
+  }
   return (
     <div className="container">
       <div className="product-edit_section" >
@@ -40,10 +59,8 @@ const Product = (props) => {
               <span>หมวดหมู่</span>
             </div>
             <div className="col">
-              <ModalType />
-              {/* <button type="button" className="button--link">
-                <FontAwesomeIcon icon={faPencilAlt} />
-              </button> */}
+              {state.typeText ? state.typeText : null}
+              <ModalType modalTypeChange={(data) => _modalTypeChange(data)} />
             </div>
           </div>
         </div>
@@ -79,12 +96,7 @@ const Product = (props) => {
               <span>ตัวเลือกสินค้า</span>
             </div>
             <div className="col">
-              <button type="button" className="repeater-add shopee-button shopee-button--normal">
-                <span>
-                  <FontAwesomeIcon icon={faPlus} />
-                  <span>เปิดใช้งานตัวเลือกสินค้า</span>
-                </span>
-              </button>
+              <ModalOption />
             </div>
           </div>
           <div className="row edit-row">
